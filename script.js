@@ -497,29 +497,49 @@ tiltCards.forEach(card => {
 // 2. Terminal Typing Effect for Hero Subheader
 const typedTextElement = document.querySelector('.neon-text');
 if (typedTextElement) {
-    const textToType = typedTextElement.textContent;
+    const phrases = ["Frontend Developer | Creative Web Builder", "Aspiring Ethical Hacker"];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
     typedTextElement.textContent = '';
     typedTextElement.style.borderRight = '3px solid var(--neon-blue)'; // Blinking cursor
     typedTextElement.style.paddingRight = '5px';
     typedTextElement.style.display = 'inline-block';
     
-    let charIndex = 0;
-
     const typeWriter = () => {
-        if (charIndex < textToType.length) {
-            typedTextElement.textContent += textToType.charAt(charIndex);
-            charIndex++;
-            setTimeout(typeWriter, 40); // speed of typing
+        const currentPhrase = phrases[phraseIndex];
+        
+        if (isDeleting) {
+            typedTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
         } else {
-            // Infinite Cursor Blink
-            setInterval(() => {
-                typedTextElement.style.borderColor = typedTextElement.style.borderColor === 'transparent' ? 'var(--neon-blue)' : 'transparent';
-            }, 500);
+            typedTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
         }
+
+        // Speed logic: typing is slower, deleting is faster
+        let typeSpeed = isDeleting ? 30 : 60;
+
+        if (!isDeleting && charIndex === currentPhrase.length) {
+            typeSpeed = 2500; // Pause when word is fully typed
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            typeSpeed = 500; // Pause before typing new word
+        }
+
+        setTimeout(typeWriter, typeSpeed);
     };
     
     // Begin typing shortly after preloader
-    setTimeout(typeWriter, 1200); 
+    setTimeout(typeWriter, 1200);
+
+    // Infinite Cursor Blink
+    setInterval(() => {
+        typedTextElement.style.borderColor = typedTextElement.style.borderColor === 'transparent' ? 'var(--neon-blue)' : 'transparent';
+    }, 500);
 }
 
 // 3. Cyber Click Shockwave Effect
