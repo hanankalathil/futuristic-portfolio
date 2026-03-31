@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hanan's Portfolio</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/optimized/favicon.png">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Preload Critical Images -->
+    <link rel="preload" as="image" href="assets/optimized/circuit-bg.jpg">
+    <link rel="preload" as="image" href="assets/optimized/profile-gemini.jpg">
+
+    <!-- Three.js CDN -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init({
+                publicKey: "X5gOrQRkyOxmb0DD6",
+            });
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-content">
+            <h2 class="glitch-text-sm">SYSTEM INITIALIZING...</h2>
+            <div class="loader-bar-container">
+                <div class="loader-bar"></div>
+            </div>
+            <p id="loader-percent">0%</p>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress-container">
+        <div id="scroll-progress-bar"></div>
+    </div>
+
+    <!-- 3D Canvas Background -->
+    <canvas id="hero-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar glass">
+        <div class="container">
+            <a href="#" class="logo">HANAN.K</a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="nav-toggle" id="mobile-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content reveal">
+                <h1 class="glitch-text" data-text="Hi, I'm Hanan">Hi, I'm Hanan</h1>
+                <h2 class="neon-text">Frontend Developer | Creative Web Builder</h2>
+                <p>I build futuristic, interactive digital experiences with a focus on immersive UI and high-performance
+                    engineering.</p>
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+            </div>
+            <div class="hero-image-wrapper reveal">
+                <div class="profile-img-container" id="profile-container">
+                    <img src="assets/optimized/profile-gemini.jpg" alt="Hanan Portrait" class="neon-hdr" width="450"
+                        height="550" fetchpriority="high">
+                    <div class="img-glow-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section glass">
+        <div class="container">
+            <h2 class="section-title reveal">Brief Introduction</h2>
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <p>I am a passionate developer focused on creating modern, interactive, and visually engaging web
+                        experiences. I enjoy building UI systems and experimenting with 3D technologies like Three.js to
+                        push the boundaries of creative web design.</p>
+                </div>
+                <div class="skills-grid reveal">
+                    <div class="skill-card">
+                        <h3>HTML/CSS</h3>
+                        <p>Semantic Layouts & Modern Styling</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>JavaScript</h3>
+                        <p>Logic, Interactivity & Reactivity</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Three.js</h3>
+                        <p>3D Rendering & Particle Systems</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>UI/UX</h3>
+                        <p>Design Systems & User Psychology</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects section">
+        <div class="container">
+            <h2 class="section-title reveal">Featured Creations</h2>
+            <div class="project-grid">
+                <!-- Project 1 -->
+                <div class="project-card glass reveal" data-project="chai">
+                    <div class="card-img">
+                        <img src="assets/optimized/project1-neon.png" alt="THE CHAI VILLA" loading="lazy"
+                            decoding="async" width="400" height="200">
+                    </div>
+                    <div class="card-content">
+                        <h3>THE CHAI VILLA</h3>
+                        <p>Modern cafe website featuring a clean UI and responsive design for a premium ordering
+                            experience.</p>
+                        <button class="view-link-btn view-details">View Details</button>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="project-card glass reveal" data-project="portfolio">
+                    <div class="card-img">
+                        <img src="assets/optimized/project2-neon.png" alt="3D Portfolio" loading="lazy" decoding="async"
+                            width="400" height="200">
+                    </div>
+                    <div class="card-content">
+                        <h3>3D Interactive Portfolio</h3>
+                        <p>Immersive developer portfolio featuring Three.js animations, particle systems, and sleek UI.
+                        </p>
+                        <button class="view-link-btn view-details">View Details</button>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card glass reveal" data-project="love">
+                    <div class="card-img">
+                        <img src="assets/optimized/project3-neon.png" alt="Love Calculator" loading="lazy"
+                            decoding="async" width="400" height="200">
+                    </div>
+                    <div class="card-content">
+                        <h3>Love Calculator App</h3>
+                        <p>Fun interactive web application using JavaScript logic and a clean user interface.</p>
+                        <button class="view-link-btn view-details">Explore Tech</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section glass">
+        <div class="container">
+            <h2 class="section-title reveal">Get In Touch</h2>
+            <div class="contact-form-container reveal">
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="user_name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="user_email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submit-btn">Send Message</button>
+                </form>
+                <div class="social-links">
+                    <a href="https://github.com/hanankalathil/" class="social-icon" target="_blank"
+                        rel="noopener noreferrer">GitHub</a>
+                    <a href="https://www.instagram.com/h_anan.__/" class="social-icon" target="_blank"
+                        rel="noopener noreferrer">Instagram</a>
+                    <a href="https://wa.me/9446151838" class="social-icon" target="_blank"
+                        rel="noopener noreferrer">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Hanan Kalathil. Powered by Three.js.</p>
+    </footer>
+
+
+    <!-- Project Modal Overlay -->
+    <div id="project-modal" class="modal-overlay">
+        <div class="modal-content glass">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-img-container">
+                    <img id="modal-img" src="" alt="Project Preview">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modal-title">Project Title</h2>
+                    <div class="tech-tags" id="modal-tags"></div>
+                    <p id="modal-description">Deep project description goes here.</p>
+                    <div class="modal-actions">
+                        <a href="#" class="btn btn-primary" id="modal-link">Live Demo</a>
+                        <a href="#" class="btn btn-secondary" id="modal-repo">GitHub Repo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Premium Custom Notification -->
+    <div id="notification-overlay" class="notification-overlay">
+        <div class="notification-card glass">
+            <div class="notif-header">
+                <span class="notif-icon">🛡️</span>
+                <h3 class="notif-title">SYSTEM STATUS</h3>
+            </div>
+            <p id="notification-message">Message placeholder text here.</p>
+            <button id="notification-close" class="btn btn-primary">ACKNOWLEDGE</button>
+        </div>
+    </div>
+
+    <!-- Main Script -->
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
